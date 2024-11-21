@@ -1,0 +1,86 @@
+# Introduction Function
+def introduction():
+    print("Welcome to 'A Day in the Life of a Student'!")
+    print("In this simulation, you'll make choices about your day.")
+    print("Your goal is to finish the day feeling happy and productive.")
+    print("Let's begin!\n")
+
+# Wake-Up Function
+def wake_up():
+    print("What time do you wake up?")
+    print("1. Early (6 AM)")
+    print("2. On time (8 AM)")
+    print("3. Late (10 AM)")
+    choice = input("Choose 1, 2, or 3: ")
+    if choice == "1":
+        return 10, "energized"
+    elif choice == "2":
+        return 7, "neutral"
+    elif choice == "3":
+        return 3, "rushed"
+    else:
+        print("Invalid choice. Defaulting to waking up late.")
+        return 3, "rushed"
+
+# Class Attendance Function
+def attend_class(energy):
+    print("\nDo you want to attend class today?")
+    print("1. Attend all classes")
+    print("2. Skip some classes")
+    print("3. Skip all classes")
+    choice = input("Choose 1, 2, or 3: ")
+    if choice == "1":
+        energy -= 2
+        return energy, "productive"
+    elif choice == "2":
+        energy -= 1
+        return energy, "relaxed"
+    elif choice == "3":
+        return energy, "guilty"
+    else:
+        print("Invalid choice. Defaulting to skipping some classes.")
+        energy -= 1
+        return energy, "relaxed"
+
+# Lunch Choice Function
+def choose_lunch(mood):
+    print("\nWhat do you want to eat for lunch?")
+    print("1. Healthy meal (salad, grilled chicken, etc.)")
+    print("2. Fast food (burger, fries, etc.)")
+    print("3. Skip lunch")
+    choice = input("Choose 1, 2, or 3: ")
+    if choice == "1":
+        return mood + " and satisfied"
+    elif choice == "2":
+        return mood + " but sluggish"
+    elif choice == "3":
+        return mood + " and hungry"
+    else:
+        print("Invalid choice. Defaulting to fast food.")
+        return mood + " but sluggish"
+
+# End-of-Day Summary Function
+def end_of_day(energy, mood):
+    print("\nYour day is coming to an end.")
+    print(f"Energy Level: {energy}")
+    print(f"Mood: {mood}")
+    if energy > 7:
+        print("You had a great day! You feel accomplished and happy.")
+    elif 4 <= energy <= 7:
+        print("You had an okay day. You got some things done but could improve.")
+    else:
+        print("You feel drained. Try to make better choices tomorrow!")
+
+# Main Simulation
+def main():
+    introduction()
+    energy, mood = wake_up()
+    print(f"\nYou woke up feeling {mood} with energy level {energy}.")
+    energy, mood = attend_class(energy)
+    print(f"\nAfter your decision about class, your mood is now {mood} and energy level is {energy}.")
+    mood = choose_lunch(mood)
+    print(f"\nAfter lunch, your mood is now {mood}.")
+    end_of_day(energy, mood)
+
+if __name__ == "__main__":
+    main()
